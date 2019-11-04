@@ -17,19 +17,16 @@ public static final double DEADZONE = 0.1;
 public final XboxController driveC = new XboxController(0);
 public final Joystick driveCTwo = new Joystick(1);
 
-//Regular "throttle" joystick
-public double getDriveCX() {
-  double raw = driveCTwo.getX();
-  return Math.abs(raw) < DEADZONE ? 0.0 : raw;
-}
-
 //XboxController
 public double getDriveCXL() {
   double raw = driveC.getRawAxis(0);
   return Math.abs(raw) < DEADZONE ? 0.0 : raw;
 }
 
-
-
+//Regular "throttle" joystick
+public double getDriveCTwoX() {
+  double raw = driveCTwo.getX();
+  return Math.abs(raw) < DEADZONE ? 0.0 : raw;
+}
 
 }
