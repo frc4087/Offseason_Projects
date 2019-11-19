@@ -21,17 +21,17 @@ public double getXboxCXL() {
 }
 
 public double getXboxCXR() {
-  double raw = xboxC.getRawAxis(4);
-  return Math.abs(raw) < DEADZONE ? 0.0 : raw;
-}
-
-public double getXboxCYL() {
-  double raw = xboxC.getRawAxis(1);
+  double raw = xboxC.getRawAxis(0);
   return Math.abs(raw) < DEADZONE ? 0.0 : raw;
 }
 
 public double getXboxCYR() {
-  double raw = xboxC.getRawAxis(5);
+  double raw = xboxC.getRawAxis(0);
+  return Math.abs(raw) < DEADZONE ? 0.0 : raw;
+}
+
+public double getXboxCYL() {
+  double raw = xboxC.getRawAxis(0);
   return Math.abs(raw) < DEADZONE ? 0.0 : raw;
 }
 
