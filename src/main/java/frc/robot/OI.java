@@ -26,6 +26,37 @@ public class OI {
     return Math.abs(raw) < DEADZONE ? 0.0 : raw;
   }
 
-  
+  public double getDriveCTwoX() {
+    double raw = driveC.getRawAxis(5);
+    return Math.abs(raw) < DEADZONE ? 0.0 : raw;
+  }
 
+  public double getDriveCYL() {
+    double raw = driveC.getRawAxis(1);
+    return Math.abs(raw) < DEADZONE ? 0.0 : raw;
+  }
+
+  public double getDriveCTwoY() {
+    double raw = driveC.getRawAxis(6);
+    return Math.abs(raw) < DEADZONE ? 0.0 : raw;
+  }
+  public double getOpCXL() {
+    double raw = opC.getRawAxis(0);
+    return Math.abs(raw) < DEADZONE ? 0.0 : raw;
+  }
+
+  public double getOpCTwoX() {
+    double raw = opC.getRawAxis(5);
+    return Math.abs(raw) < DEADZONE ? 0.0 : raw;
+  }
+
+  public double getOpCYL() {
+    double raw = opC.getRawAxis(1);
+    return Math.abs(raw) < DEADZONE ? 0.0 : raw;
+  }
+
+  public double getOpCTwoY() {
+    double raw = opC.getRawAxis(6);
+    return Math.abs(raw) < DEADZONE ? 0.0 : raw;
+  }
 }

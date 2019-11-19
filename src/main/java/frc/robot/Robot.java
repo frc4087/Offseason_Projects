@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.VisionTracking;
 import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.TrackingBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,8 +25,9 @@ import frc.robot.subsystems.Drivebase;
  */
 public class Robot extends TimedRobot {
   public static OI m_oi;
-  public Drivebase m_drivebase = new Drivebase();
-
+  public static Drivebase m_drivebase = new Drivebase();
+  public static TrackingBase m_trackingBase = new TrackingBase();
+  public static VisionTracking m_visionTracking = new VisionTracking();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -120,11 +123,14 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
+    if (m_oi.driveC.getXButton()) {
+      m_visionTracking.track();
+    }
     m_drivebase.m_drive.arcadeDrive(m_oi.getDriveCXL(), m_oi.getDriveCTwoX());
   }
 
   /**
-   * This function is called periodically during test mode.
+    *This function is called periodically during test mode.
    */
   @Override
   public void testPeriodic() {
