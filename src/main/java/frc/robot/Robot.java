@@ -1,19 +1,18 @@
-/*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
-/*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.commands.visiontracking;
+import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.TrackingBase;
+import frc.robot.subsystems.drivebase;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,21 +22,19 @@ import frc.robot.subsystems.ExampleSubsystem;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
+  public Drivebase m_drivebase = new Drivebase();
+  public static TrackingBase m_trackingBase = new TrackingBase
+  public static visiontracking m_vision = new visiontracking();
+
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
-   */
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
+    
     SmartDashboard.putData("Auto mode", m_chooser);
   }
 
@@ -120,11 +117,12 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+
+    m_drivebase.m_drive.tankDrive(m_oi.getbruh_1Y(), m_oi.getbruh_2Y());
+
   }
 
-  /**
-   * This function is called periodically during test mode.
-   */
+  
   @Override
   public void testPeriodic() {
   }

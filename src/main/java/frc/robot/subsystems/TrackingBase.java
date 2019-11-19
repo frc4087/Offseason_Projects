@@ -5,16 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * Add your docs here.
+ */
+public class TrackingBase extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
 
-public final class Main {
-  private Main() {
-  }
-
-    public static void main(String... args) {
-    RobotBase.startRobot(Robot::new);
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
   }
 }
