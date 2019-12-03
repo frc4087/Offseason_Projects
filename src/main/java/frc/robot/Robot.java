@@ -12,8 +12,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.visiontracking;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.TrackingBase;
-import frc.robot.subsystems.drivebase;
-
+import frc.robot.subsystems.IntakeActuator.Hatch;
+import frc.robot.subsystems.IntakeActuator.Intake;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -23,10 +24,11 @@ import frc.robot.subsystems.drivebase;
  */
 public class Robot extends TimedRobot {
   public static OI m_oi;
-  public Drivebase m_drivebase = new Drivebase();
-  public static TrackingBase m_trackingBase = new TrackingBase
+  public static Drivebase m_drivebase = new Drivebase();
+  public static TrackingBase m_trackingBase = new TrackingBase();
   public static visiontracking m_vision = new visiontracking();
-
+  public static Hatch Hatch_1 = new Hatch();
+  public static Intake Intake_1 = new Intake();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -117,12 +119,25 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-
-    m_drivebase.m_drive.tankDrive(m_oi.getbruh_1Y(), m_oi.getbruh_2Y());
-
-  }
-
   
+    if (m_oi.bruh_1.getRawButton(1)){
+      m_vision.track();
+    } else {
+    m_drivebase.m_drive.tankDrive(m_oi.getbruh_1Y(), m_oi.getbruh_2Y());
+    }
+    if (m_oi.bruh_1.getRawButton(3)){
+      Hatch_1.Hatch.set(DoubleSolenoid.Value.kForward);
+    }
+    if (m_oi.bruh_1.getRawButton(2)){
+      Hatch_1.Hatch.set(DoubleSolenoid.Value.kReverse);
+    }
+    if (m_oi.bruh_1.getRawButton(4)){
+      Intake_1.Intake.set(DoubleSolenoid.Value.kForward);
+    }
+    if (m_oi.bruh_1.getRawButton(5)){
+      Intake_1.Intake.set(DoubleSolenoid.Value.kReverse);
+    }
+  }
   @Override
   public void testPeriodic() {
   }
